@@ -16,6 +16,11 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    @GetMapping("/{id}")
+    public Todo getById(@PathVariable Long id) {
+        return todoService.getById(id);
+    }
+
     @GetMapping
     public List<Todo> getAllTodos() {
         return todoService.findAll();

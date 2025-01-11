@@ -14,6 +14,11 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
+    public Todo getById(Long id) {
+        return todoRepository.findById(id).
+                orElseThrow(() -> new RuntimeException("Todo not found with id: " + id));
+    }
+
     public List<Todo> findAll() {
         return todoRepository.findAll();
     }
