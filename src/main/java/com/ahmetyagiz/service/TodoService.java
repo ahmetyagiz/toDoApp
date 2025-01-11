@@ -1,8 +1,10 @@
 package com.ahmetyagiz.service;
 
 import com.ahmetyagiz.entities.Todo;
+import com.ahmetyagiz.exception.TodoNotFoundException;
 import com.ahmetyagiz.repository.TodoRepository;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -33,7 +35,7 @@ public class TodoService {
 
     public Todo updateTodo(Long id, Todo updatedTodo) {
         Todo existingTodo = todoRepository.findById(id).
-                orElseThrow(() -> new RuntimeException("Todo not found with id: " + id));
+                orElseThrow(() -> new TodoNotFoundException(id.toString()));
 
         if (updatedTodo.getTitle() != null) {
             existingTodo.setTitle(updatedTodo.getTitle());
